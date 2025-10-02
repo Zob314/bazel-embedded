@@ -22,6 +22,7 @@ CC_ALL_COMMON_FEATURES_INFO = {
     "fastbuild": "Compile quickly, for fast development",
     "output_format": "The output format of the compilers *.stripped target, (default binary)",
     "coverage": "A set of features that don't fit in any other categories",
+    "generate_linkmap": "Generates a mapfile during the link stage",
     "misc": "A set of features that don't fit in any other categories",
     "type_name": "The type name for this provider",
 }
@@ -40,6 +41,7 @@ def all_common_features(
         fastbuild,
         output_format,
         coverage,
+        generate_linkmap,
         misc):
     """ all_common_features represents the minimal set of features that should be implemented for a portable toolchain
 
@@ -55,6 +57,7 @@ def all_common_features(
         fastbuild: Configure the fastbuild mode, to speed up developement
         output_format: The output format for the {target}.stripped target (default binary)
         coverage: Feature for instrumenting code coverage
+        generate_linkmap: Generates a mapfile during the link stage
         misc: The set of features that don't fit anywhere else
 
     Returns:
@@ -71,6 +74,7 @@ def all_common_features(
         fastbuild,
         output_format,
         coverage,
+        generate_linkmap,
         misc,
     ]
     for arg in args:
@@ -91,6 +95,7 @@ def all_common_features(
         fastbuild = fastbuild,
         output_format = output_format,
         coverage = coverage,
+        generate_linkmap = generate_linkmap,
         misc = misc,
         type_name = "cc_all_common_feature_info",
     )

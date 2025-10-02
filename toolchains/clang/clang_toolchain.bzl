@@ -156,6 +156,7 @@ def _clang_toolchain_config_info_impl(ctx):
             common_features.output_format,
             common_features.coverage,
             common_features.misc,
+            common_features.generate_linkmap,
         ],
     )
     return toolchain_config_info

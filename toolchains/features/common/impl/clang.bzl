@@ -273,6 +273,24 @@ _OPT_FEATURE = feature(
     provides = ["compilation_mode"],
 )
 
+_GENERATE_LINKMAP_FEATURE = feature(
+    name = "generate_linkmap",
+    enabled = True,
+    flag_sets = [
+        flag_set(
+            actions = _LD_ALL_ACTIONS,
+            flag_groups = [
+                flag_group(
+                    flags = [
+                        "-Wl,-Map=%{output_execpath}.map", # if is_linux else "-Wl,-map,%{output_execpath}.map",
+                    ],
+                    expand_if_available = "output_execpath",
+                ),
+            ],
+        ),
+    ],
+)
+
 # Leaving for compatibility
 _OUTPUT_FORMAT_FEATURE = feature(
     name = "output_format",
@@ -333,4 +351,5 @@ def GetClangCommonFeatures(include_paths, sysroot = "", architecture = "native",
         output_format = _OUTPUT_FORMAT_FEATURE,
         coverage = _COVERAGE_FEATURE,
         misc = _MISC,
+        generate_linkmap = _GENERATE_LINKMAP_FEATURE,
     )

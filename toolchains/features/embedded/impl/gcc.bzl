@@ -135,24 +135,6 @@ _CC_CONSTRUCTOR_DESTRUCTOR_FEATURE = feature(
     ],
 )
 
-_GENERATE_LINKMAP_FEATURE = feature(
-    name = "generate_linkmap",
-    enabled = True,
-    flag_sets = [
-        flag_set(
-            actions = _LD_ALL_ACTIONS,
-            flag_groups = [
-                flag_group(
-                    flags = [
-                        "-Wl,-Map=%{output_execpath}.map", # if is_linux else "-Wl,-map,%{output_execpath}.map",
-                    ],
-                    expand_if_available = "output_execpath",
-                ),
-            ],
-        ),
-    ],
-)
-
 def GetGccEmbeddedFeatures():
     """ GetGccEmbeddedFeatures returns features relevant to embedded developement
     """
@@ -161,5 +143,4 @@ def GetGccEmbeddedFeatures():
         runtime_type_information = _RUNTIME_TYPE_INFORMATION_FEATURE,
         sys_spec = _SYS_SPEC_FEATURE,
         cc_constructor_destructor = _CC_CONSTRUCTOR_DESTRUCTOR_FEATURE,
-        generate_linkmap = _GENERATE_LINKMAP_FEATURE,
     )

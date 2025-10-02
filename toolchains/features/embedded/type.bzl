@@ -11,6 +11,7 @@ CC_ALL_EMBEDDED_FEATURES_INFO = {
     "sys_spec": "Configuration for the system spec (Must default to no system spec)",
     "cc_constructor_destructor": "Must disable destructors on global c++ variables, and allow instantiation of global variables only once",
     "type_name": "The type name for this provider",
+    "generate_linkmap": "Generates a mapfile during the link stage",
 }
 CcAllEmbeddedFeatureInfo = provider(fields = CC_ALL_EMBEDDED_FEATURES_INFO)
 
@@ -18,7 +19,8 @@ def all_embedded_features(
         exceptions,
         runtime_type_information,
         sys_spec,
-        cc_constructor_destructor):
+        cc_constructor_destructor,
+        generate_linkmap):
     """ all_common_features represents the minimal set of features that should be implemented for a portable toolchain
 
     Args:
@@ -26,6 +28,7 @@ def all_embedded_features(
         runtime_type_information: Compile with run time type information (disable by default)
         sys_spec: Define the system spec for this target (Must default ot no system spec)
         cc_constructor_destructor: Must disable destructors on global c++ variables, and allow instantiation of global variables only once (Should be enabled by default)
+        generate_linkmap: Generates a mapfile during the link stage
 
     Returns:
         CCAllEmbeddedFeatureInfo: All the common embedded features required to make a minimal toolchain
@@ -35,6 +38,7 @@ def all_embedded_features(
         runtime_type_information,
         sys_spec,
         cc_constructor_destructor,
+        generate_linkmap,
     ]
     for arg in args:
         if not _is_feature(arg):
@@ -47,4 +51,5 @@ def all_embedded_features(
         runtime_type_information = runtime_type_information,
         sys_spec = sys_spec,
         cc_constructor_destructor = cc_constructor_destructor,
+        generate_linkmap = generate_linkmap,
     )

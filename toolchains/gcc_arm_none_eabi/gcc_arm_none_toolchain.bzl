@@ -162,6 +162,7 @@ def _gcc_arm_none_toolchain_config_info_impl(ctx):
             embedded_features.runtime_type_information,
             embedded_features.sys_spec,
             embedded_features.cc_constructor_destructor,
+            embedded_features.generate_linkmap,
         ],
     )
     return toolchain_config_info
